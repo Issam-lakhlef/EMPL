@@ -1755,7 +1755,7 @@ if(SEQ_VAL_IS_LT(locmmptr->seq,((struct mpl_msg *)list_head(locssptr->min_seq))-
   PRINTF("[MPL]:Min Seq Number=%u, %u values\n", locssptr->min_seqno, locssptr->count);
   /**Reset the Lifetime of the corresponding Seed Set entry to SEED_SET_ENTRY_LIFETIME**/
   locssptr->lifetime = MPL_SEED_SET_ENTRY_LIFETIME;
-*/
+	
   /* Deliver if necessary */
   return UIP_MCAST6_ACCEPT;
 }
