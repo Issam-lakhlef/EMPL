@@ -155,11 +155,17 @@ struct mpl_msg {
  */
 #define SEQ_VAL_ADD(s, n) (((s) + (n)) % 0x100)
 /*---------------------------------------------------------------------------*/
+struct min_sequence {
+uint8_t min; //  c'est le min_seq
+uint8_t SN_msg[50]; // pour gardr la trace des paquet supprimer puisque dans ce type de gestion de buffer ce n'est pas le dernier qui tout jours été supprimer
+uint8_t k; //c'est l'indice d'incertion
+uint8_t min_tab; // c'est le min seq ou le tableau commence (unused pour le moment) 
+};
 
 /* Seed Set */
 struct mpl_seed {
   seed_id_t seed_id;
-  uint8_t min_seqno; min_seqno; /* Used when the seed set is empty */
+  struct min_sequence min_seqno; /* Used when the seed set is empty */
   uint8_t lifetime; /* Decrements by one every minute */
   uint8_t count; /* Only used for determining largest msg set during reclaim */
   LIST_STRUCT(min_seq); /* Pointer to the first msg in this seed's set */
@@ -1522,10 +1528,9 @@ seed_present:
 
     /* Potential quick resolution here */ 
     locmmptr = list_head(locssptr->min_seq);
-    /*------------Memory_management-------------*/
+	  
     if(locmmptr == NULL ) {
-      
-      /* We have nothing! -- aucun message dans le buffer pour ce Seed*/
+      /* We have nothing! */
       if(vector[0] > 0) {
         /* They have something! */
         l_missing = 1;
