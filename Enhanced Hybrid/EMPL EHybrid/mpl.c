@@ -159,7 +159,7 @@ struct mpl_msg {
 /* Seed Set */
 struct mpl_seed {
   seed_id_t seed_id;
-  struct min_sequence min_seqno; /* Used when the seed set is empty */
+  uint8_t min_seqno; min_seqno; /* Used when the seed set is empty */
   uint8_t lifetime; /* Decrements by one every minute */
   uint8_t count; /* Only used for determining largest msg set during reclaim */
   LIST_STRUCT(min_seq); /* Pointer to the first msg in this seed's set */
@@ -362,7 +362,6 @@ static struct mpl_msg buffered_message_set[MPL_BUFFERED_MESSAGE_SET_SIZE];
 //-----------------------Emem------------------------
 static uint8_t buffer[MPL_BUFFERED_MESSAGE_SET_SIZE][MPL_BUFFERED_MESSAGE_SET_SIZE]; // LRU Tablte
 //...................................................
-static uint8_t ind;
 static struct mpl_seed seed_set[MPL_SEED_SET_SIZE];
 static struct mpl_domain domain_set[MPL_DOMAIN_SET_SIZE];
 static uint16_t last_seq;
