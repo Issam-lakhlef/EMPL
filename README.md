@@ -1,8 +1,8 @@
-#Enhanced Multicast Protocol for Low-power and Lossy IoT Networks (EMPL) - Proof of Concept Implementation
+# Enhanced Multicast Protocol for Low-power and Lossy IoT Networks (EMPL) - Proof of Concept Implementation
 
 This repository contains the proof of concept implementation for the EMPL and MPL in Contiki-OS 3.x.
 
-Overview:
+## Overview:
 
 1. MPL Engine Integration:
   To incorporate the new "MPL" engine, modifications are required in three specific files. The updated files can be located in the "other folders to replace" folder. Follow the standard procedure for adding a new engine.
